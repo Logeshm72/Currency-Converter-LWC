@@ -1,0 +1,58 @@
+    <template>
+        <lightning-card title="Curreny Converter using LWC" icon-name="custom:custom13">
+            <div class="slds-var-p-around_medium">
+
+    <div>
+    <!--Enter the Amount-->
+    <lightning-input type="number" variant="standard" 
+    name="Amount" label="Enter the Amount" 
+    placeholder="Enter your amount here..." onchange={handleChange} required></lightning-input>
+    </div>
+    <div>
+    <!--Enter from To to curreny conversion-->
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+        <span>
+            <lightning-combobox
+        name="FromCurr"
+        label="From Curreny"
+        options={currencyOptions}
+        onchange={handleChange} ></lightning-combobox>
+        </span>
+        </div>
+        <div class="slds-col">
+        <span>
+            <lightning-combobox
+            name="ToCurr"
+            label="To Currency"
+            options={currencyOptions}
+            onchange={handleChange} ></lightning-combobox>
+    </span>
+        </div>
+        </div>
+    </div><br></br>
+    <div class="format">
+    <!--Space for submit button-->
+                <lightning-button 
+                variant="brand"
+                label="Convert" 
+                onclick={handleClick} 
+                ></lightning-button>
+    </div>
+    <template lwc:if={showOutput}>
+        <div class="format">
+            <!--Final Converted Curreny Output-->
+            <p>Converted Currency : </p><br></br>
+            <p>
+                <lightning-formatted-number 
+                value={convertedCurrency}
+                format-style="currency"
+                currency-code={enteredToCurrency}
+                currency-display-as="name"
+                ></lightning-formatted-number>
+            </p>           
+            </div>
+    </template>
+            </div>
+        </lightning-card>
+    </template>
